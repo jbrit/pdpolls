@@ -1,31 +1,43 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
     {% block extrastyles %}{% endblock extrastyles %}
     <title>{% block title%}{% endblock title%}</title>
-</head>
-<body>
+  </head>
+  <body>
     {% block body %}{% endblock body %}
-    <div class="w-100 text-right text-muted mt-n5 p-3 copyright" style="font-size: 0.75rem;">
-        <hr class="d-inline-block w-50 mr-2" style="vertical-align: middle;"> Developed by <a target="_blank" href="http://thepuredev.net" class="my-name">Ajibola Ojo</a>
+    <div
+      class="w-100 text-right text-muted mt-n5 p-3 copyright"
+      style="font-size: 0.75rem"
+    >
+      <hr class="d-inline-block w-50 mr-2" style="vertical-align: middle" />
+      Developed by
+      <a target="_blank" href="http://jbritz.tech" class="my-name"
+        >Ajibola Ojo</a
+      >
     </div>
     {% block extrascripts %}{% endblock extrascripts %}
     <style>
-        .display-5{
-            font-size: 3rem;
-        }
-        .my-name { 
-            border-bottom: 2px dotted;
-            color: #575a89;
-         }
-         .my-name:hover { 
-            color: purple;
-            text-decoration: none;
-         }
+      .display-5 {
+        font-size: 3rem;
+      }
+      .my-name {
+        border-bottom: 2px dotted;
+        color: #575a89;
+      }
+      .my-name:hover {
+        color: purple;
+        text-decoration: none;
+      }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.js"></script>
-</body>
+  </body>
 </html>
