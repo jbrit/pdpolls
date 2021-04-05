@@ -1,0 +1,26 @@
+<nav
+  class="d-flex py-4 bg-white shadow text-right text-dark px-2 px-md-3 px-lg-5"
+>
+  <a class="mr-auto" href="{% url 'core:cat-home' %}">PD Polls</a>
+  {% if request.user.is_authenticated %}
+  <!-- Logged in -->
+  {% if request.user.is_staff %}
+  <a href="/admin" class="d-inline-block mx-2">Dashboard</a>
+  {% else %}
+  <span class="d-inline-block mx-2">Welcome!!</span>
+  {% endif %}
+  <span class="d-inline-block">
+    <a href="javascript: document.getElementById('logout').submit()">Logout</a>
+    <form
+      method="post"
+      id="logout"
+      action="{% url 'core:logout' %}"
+      class="d-none"
+    >
+      {% csrf_token %}
+    </form>
+  </span>
+  {% else %}
+  <a href="{% url 'core:login' %}" class="d-block">Login</a>
+  {% endif %}
+</nav>

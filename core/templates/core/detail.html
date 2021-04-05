@@ -1,0 +1,84 @@
+{% extends "core/base.html" %}
+<!--  -->
+{% block title %} {{category.name}} | PureDev {% endblock title %}
+<!--  -->
+{% block extrastyles %}
+<link
+  href="https://fonts.googleapis.com/css?family=Nunito:600&display=swap"
+  rel="stylesheet"
+/>
+{% endblock extrastyles %} {% block body%}
+<!-- Nav -->
+{% include "_topnav.html" %}
+<div class="bg-light w-100">
+  <div
+    class="cat-head p-5 w-100 shadow-s"
+    style="
+      background-color: #f1f1f1;
+      font-family: 'Nunito', sans-serif;
+      color: #602020;
+      border-left: solid 15px black;
+    "
+  >
+    <span class="display-5 px-5"> {{category.name}} </span>
+  </div>
+
+  <div class="card-display w-100 row py-5">
+    {% for voteitem in category.items.all %}
+    <div class="card col-2 mx-auto">
+      <span href="#">{{voteitem.name}}</span>
+      <div class="card-body">
+        <div class="d-flex">
+          <a
+            href="javascript: document.getElementById('vote{{voteitem.id}}').submit()"
+            >vote</a
+          >
+          {% if voteitem in request.user.profile.votes.all%}
+          <span class="d-block"> Voted 👌 </span>
+          {% endif %}
+        </div>
+        <form
+          method="post"
+          class="d-none"
+          action="{% url 'core:vote' id=voteitem.id %}"
+          id="vote{{voteitem.id}}"
+        >
+          {% csrf_token %}
+        </form>
+      </div>
+    </div>
+    {% empty %}
+    <h5>No Item In this category</h5>
+    {% endfor %}
+  </div>
+
+  <div class="cat-nav text-center pb-5">
+    {% if page.has_previous %}
+    <a class="cat-nav-btn" href="{% url 'core:detail' slug=prev_slug %}"
+      >Previous Category</a
+    >
+    {% else %}
+    <a class="cat-nav-btn" href="{% url 'core:cat-home' %}"
+      >Back to Categories page</a
+    >
+    {% endif %} {% if page.has_next %}
+    <a class="cat-nav-btn" href="{% url 'core:detail' slug=next_slug %}"
+      >Next Category</a
+    >
+    {% else %}
+    <a class="cat-nav-btn" href="{% url 'core:cat-home' %}"
+      >Back to Categories page</a
+    >
+    {% endif %}
+  </div>
+</div>
+<style>
+  .cat-nav-btn {
+    padding: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    border: 1px solid black;
+  }
+</style>
+
+{% endblock body%}

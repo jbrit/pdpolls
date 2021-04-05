@@ -1,0 +1,45 @@
+{% extends "core/base.html" %} {% block title %}Categories{% endblock title %}
+{% block extrastyles %}<link
+  href="https://fonts.googleapis.com/css?family=Nunito:600&display=swap"
+  rel="stylesheet"
+/>{% endblock extrastyles %} {% block body%} {% include "_topnav.html" %}
+<div class="bg-white w-100">
+  <div
+    class="cat-head p-5 w-100 text-center"
+    style="
+      background-color: #f1f1f1;
+      font-family: 'Nunito', sans-serif;
+      color: #602020;
+      border-left: solid 15px #602020;
+    "
+  >
+    <span class="display-5 text-center"> PureDev Categories </span>
+  </div>
+  <div class="text-center w-75 mx-auto py-5" style="max-width: 880px">
+    {% for category in categories %}
+    <a
+      href="{% url 'core:detail' slug=category.slug %}"
+      class="m-1 m-md-2 btn cat-link"
+      >{{category}}</a
+    >
+    {% empty %}
+    <h3>No Categories yet</h3>
+    {% endfor %}
+  </div>
+</div>
+<div class="footer"></div>
+<style>
+  .cat-link {
+    border: dashed 1px #999;
+    color: #999;
+  }
+  .cat-link:hover {
+    color: #a0616a;
+    border-color: #a0616a;
+    box-shadow: none;
+  }
+  .cat-link:active {
+    box-shadow: none;
+  }
+</style>
+{% endblock body%}
