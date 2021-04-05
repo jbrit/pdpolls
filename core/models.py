@@ -83,5 +83,5 @@ class Profile(models.Model):
 @receiver(post_save, sender=CustomUser)
 def update_user_profile(sender, instance, created, **kwargs):
     if created:
-        Profile.objects.create(user=instance)
+        Profile.objects.create(person=instance)
     instance.profile.save()

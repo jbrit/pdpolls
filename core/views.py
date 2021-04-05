@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import TemplateView
 from django.http import Http404
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
@@ -13,8 +13,7 @@ import string
 from .models import Category, VoteItem, Profile
 
 class HomePage(TemplateView):
-    template_name = "core/home.html"
-    # new_template = "core/categories.html"
+    template_name = "core/categories.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -83,6 +82,7 @@ def login_view(request):
 
 def register(request):
     alert = None
+    User = get_user_model()
     if request.method == "POST":
         email = request.POST.get("email")
         if User.objects.filter(email=email).exists():
