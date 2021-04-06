@@ -1,4 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.template.loader import render_to_string
+from django.contrib.sites.shortcuts import get_current_site
 from django.views.generic import TemplateView
 from django.http import Http404
 from django.contrib.auth import authenticate, login, logout
@@ -23,8 +25,12 @@ class HomePage(TemplateView):
 
 
 # Non View Functions
-def send_password(user, password):
-    user.email_user("Password Mail", f"Your password is {password}")
+def send_password(user, password, request):
+    message = render_to_string('core/password_sent_email.txt', {
+        'password': password,
+        'domain': get_current_site(request).domain
+        })
+    user.email_user("Password Mail", message)
 
 
 def random_string_digits(string_length=6):
@@ -102,7 +108,7 @@ def register(request):
         except Exception:
             return redirect("/login")
         u.save()
-        send_password(u, password)
+        send_password(u, password, request)
         alert = {
             'text': 'The Password has been sent to your email!',
             'class': 'success'
