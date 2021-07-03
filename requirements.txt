@@ -1,5 +1,7 @@
+boto3==1.17.105
 dj-database-url==0.5.0
 Django==3.1.7
+django-ses==2.0.0
 gunicorn==20.1.0
 psycopg2==2.8.6
 python-dotenv==0.16.0

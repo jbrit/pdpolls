@@ -6,7 +6,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils.translation import ugettext_lazy as _
 
-from .mailing import send_gmail
+from .mailing import send_ses_mail
 from .managers import CustomUserManager
 
 
@@ -27,7 +27,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         subject: first argument\n
         message: second argument
         """
-        send_gmail(
+        send_ses_mail(
             '{}'.format(args[0]), # Subject
             '{}'.format(args[1]), # Message
             self.email,
